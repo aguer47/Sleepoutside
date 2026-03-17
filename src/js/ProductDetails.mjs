@@ -13,7 +13,10 @@ export default class ProductDetails {
     this.product = await this.dataSource.findProductById(this.productId);
     if (!this.product) throw new Error("Product not found");
     this.renderProductDetails();
-    document.getElementById("addToCart").addEventListener("click", this.addProductToCart.bind(this));
+    document.getElementById("addToCart").addEventListener("click", () => {
+      alert("Product added to cart!");
+      this.addProductToCart();
+    });
   }
 
   addProductToCart() {
