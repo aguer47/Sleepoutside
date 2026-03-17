@@ -18,8 +18,9 @@ function normalizeCartItems(items) {
     }
 
     const existingItem = normalizedItems.find(
-      (normalizedItem) => normalizedItem.Id === item.Id,
+      (normalizedItem) => normalizedItem.Id === item.Id
     );
+
     const quantity = Number(item.quantity) || 1;
 
     if (existingItem) {
@@ -33,7 +34,11 @@ function normalizeCartItems(items) {
 }
 
 function calculateCartTotal(items) {
-  return items.reduce((sum, item) => sum + ((item.quantity || 1) * Number(item.FinalPrice || 0)), 0);
+  return items.reduce(
+    (sum, item) =>
+      sum + (Number(item.quantity || 1) * Number(item.FinalPrice || 0)),
+    0
+  );
 }
 
 function updateCartFooter(items) {
@@ -44,7 +49,7 @@ function updateCartFooter(items) {
 
   if (items.length === 0) {
     footer.classList.add("hide");
-    totalEl.textContent = "Total: ";
+    totalEl.textContent = "Total:";
     return;
   }
 
@@ -58,31 +63,42 @@ function cartItemTemplate(item) {
   const itemTotal = quantity * Number(item.FinalPrice || 0);
 
   return `<li class="cart-card divider" data-id="${item.Id}">
-  <button class="cart-remove" type="button" data-id="${item.Id}" aria-label="Remove ${item.Name}">
-    &times;
-  </button>
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${quantity}</p>
-  <p class="cart-card__price">$${itemTotal.toFixed(2)}</p>
-</li>`;
+    <button class="cart-remove" type="button" data-id="${item.Id}" aria-label="Remove ${item.Name}">
+      &times;
+    </button>
+    <a href="#" class="cart-card__image">
+      <img src="${item.Image || "default.jpg"}" alt="${item.Name || "Product"}" />
+    </a>
+    <a href="#">
+      <h2 class="card__name">${item.Name || "Unnamed Product"}</h2>
+    </a>
+    <p class="cart-card__color">${item.Colors?.[0]?.ColorName || "No color"}</p>
+    <p class="cart-card__quantity">qty: ${quantity}</p>
+    <p class="cart-card__price">$${itemTotal.toFixed(2)}</p>
+  </li>`;
 }
-
 
 function renderCartContents() {
   const cartItems = normalizeCartItems(getCartItems());
   saveCartItems(cartItems);
 
+  //  Prevent DOM error
+  if (!productListEl) {
+    console.error("No .product-list element found.");
+    return;
+  }
+
+  // For Handle empty cart
+  if (cartItems.length === 0) {
+    productListEl.innerHTML = "<p>Your cart is empty.</p>";
+    updateCartFooter(cartItems);
+    return;
+  }
+
+  
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   productListEl.innerHTML = htmlItems.join("");
+
   updateCartFooter(cartItems);
 }
 
@@ -90,9 +106,7 @@ function removeCartItem(id) {
   const cartItems = normalizeCartItems(getCartItems());
   const existingItem = cartItems.find((item) => item.Id === id);
 
-  if (!existingItem) {
-    return;
-  }
+  if (!existingItem) return;
 
   if (existingItem.quantity > 1) {
     existingItem.quantity -= 1;
@@ -104,14 +118,18 @@ function removeCartItem(id) {
   renderCartContents();
 }
 
-productListEl.addEventListener("click", (event) => {
-  const removeButton = event.target.closest(".cart-remove");
-  if (!removeButton) return;
+//  Event listener for remove buttons
+if (productListEl) {
+  productListEl.addEventListener("click", (event) => {
+    const removeButton = event.target.closest(".cart-remove");
+    if (!removeButton) return;
 
-  const id = removeButton.dataset.id;
-  if (!id) return;
+    const id = removeButton.dataset.id;
+    if (!id) return;
 
-  removeCartItem(id);
-});
+    removeCartItem(id);
+  });
+}
+
 
 renderCartContents();
