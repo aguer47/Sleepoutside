@@ -1,8 +1,7 @@
-import ProductData from "./ProductData.mjs";
-import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter } from './utils.mjs';
 
-const dataSource = new ProductData("tents");
-const element = document.querySelector(".product-list");
-const productList = new ProductList("Tents", dataSource, element);
+// Homepage only needs header/footer
+loadHeaderFooter();
 
-productList.init();
+// No product rendering here anymore.
+// Category links on index.html will point to product_listing/index.html?category=...
