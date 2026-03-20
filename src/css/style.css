@@ -302,3 +302,31 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
+.categories {
+  text-align: center;
+  margin: 2rem 0;
+  gap: 2rem;
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.categories a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+}
+
+.categories img {
+  width: 140px;
+  /* controls image size */
+  height: auto;
+}
+
+.categories h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}

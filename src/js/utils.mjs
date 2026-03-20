@@ -37,3 +37,7 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export async function loadHeaderFooter() {
+  // simple placeholder (so your app doesn't break)
+}
