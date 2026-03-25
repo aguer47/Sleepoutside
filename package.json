@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
+    "dev": "vite",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
     "lint": "eslint *.js src/**/*.js",

@@ -13,12 +13,15 @@ function saveCartItems(items) {
 
 function normalizeCartItems(items) {
   return items.reduce((normalizedItems, item) => {
-    if (!item || !item.Id || !item.Image || !item.Name) {
+    if (!item || !item.Id || !item.Name) {
       return normalizedItems;
     }
 
+    // Use PrimaryMedium as the image for cart
+    const image = item.PrimaryMedium || item.PrimaryLarge || item.Image;
+
     const existingItem = normalizedItems.find(
-      (normalizedItem) => normalizedItem.Id === item.Id,
+      (normalizedItem) => normalizedItem.Id === item.Id
     );
     const quantity = Number(item.quantity) || 1;
 
@@ -27,7 +30,7 @@ function normalizeCartItems(items) {
       return normalizedItems;
     }
 
-    normalizedItems.push({ ...item, quantity });
+    normalizedItems.push({ ...item, Image: image, quantity });
     return normalizedItems;
   }, []);
 }
@@ -35,6 +38,7 @@ function normalizeCartItems(items) {
 function calculateCartTotal(items) {
   return items.reduce((sum, item) => sum + ((item.quantity || 1) * Number(item.FinalPrice || 0)), 0);
 }
+
 
 function updateCartFooter(items) {
   const footer = document.querySelector(".cart-footer");
@@ -58,22 +62,19 @@ function cartItemTemplate(item) {
   const itemTotal = quantity * Number(item.FinalPrice || 0);
 
   return `<li class="cart-card divider" data-id="${item.Id}">
-  <button class="cart-remove" type="button" data-id="${item.Id}" aria-label="Remove ${item.Name}">
-    &times;
-  </button>
-  <a href="#" class="cart-card__image">
-    <img
-      src="${item.Image}"
-      alt="${item.Name}"
-    />
-  </a>
-  <a href="#">
-    <h2 class="card__name">${item.Name}</h2>
-  </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${quantity}</p>
-  <p class="cart-card__price">$${itemTotal.toFixed(2)}</p>
-</li>`;
+    <button class="cart-remove" type="button" data-id="${item.Id}" aria-label="Remove ${item.Name}">
+      &times;
+    </button>
+    <a href="#" class="cart-card__image">
+      <img src="${item.Image}" alt="${item.Name}" />
+    </a>
+    <a href="#">
+      <h2 class="card__name">${item.Name}</h2>
+    </a>
+    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+    <p class="cart-card__quantity">qty: ${quantity}</p>
+    <p class="cart-card__price">$${itemTotal.toFixed(2)}</p>
+  </li>`;
 }
 
 

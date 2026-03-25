@@ -37,3 +37,28 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function loadHeaderFooter() {
+  // load header
+  fetch("/components/header.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("main-header").innerHTML = html;
+    });
+
+  // load footer
+  fetch("/components/footer.html")
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("main-footer").innerHTML = html;
+    });
+}
+
+export function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem("so-cart")) || [];
+  const cartElement = document.querySelector(".cart-count");
+
+  if (cartElement) {
+    cartElement.textContent = cart.length;
+  }
+}
