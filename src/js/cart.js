@@ -13,9 +13,12 @@ function saveCartItems(items) {
 
 function normalizeCartItems(items) {
   return items.reduce((normalizedItems, item) => {
-    if (!item || !item.Id || !item.Image || !item.Name) {
+    if (!item || !item.Id || !item.Name) {
       return normalizedItems;
     }
+
+    // Use PrimaryMedium as the image for cart
+    const image = item.PrimaryMedium || item.PrimaryLarge || item.Image;
 
     const existingItem = normalizedItems.find(
       (normalizedItem) => normalizedItem.Id === item.Id
@@ -28,7 +31,7 @@ function normalizeCartItems(items) {
       return normalizedItems;
     }
 
-    normalizedItems.push({ ...item, quantity });
+    normalizedItems.push({ ...item, Image: image, quantity });
     return normalizedItems;
   }, []);
 }
@@ -40,6 +43,7 @@ function calculateCartTotal(items) {
     0
   );
 }
+
 
 function updateCartFooter(items) {
   const footer = document.querySelector(".cart-footer");
@@ -67,6 +71,12 @@ function cartItemTemplate(item) {
       &times;
     </button>
     <a href="#" class="cart-card__image">
+      <img src="${item.Image}" alt="${item.Name}" />
+    </a>
+    <a href="#">
+      <h2 class="card__name">${item.Name}</h2>
+    </a>
+    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
       <img src="${item.Image || "default.jpg"}" alt="${item.Name || "Product"}" />
     </a>
     <a href="#">

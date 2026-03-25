@@ -2,20 +2,23 @@
 <html lang="en">
 
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="js/main.js" type="module"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js" type="module"></script>
   </head>
 
   <body>
+    <!-- HEADER -->
     <header class="divider">
       <div class="logo">
         <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-        <a href="index.html"> Sleep<span class="highlight">Outside</span></a>
+        <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
       </div>
       <div class="cart">
+        <a href="/cart/index.html">
+          <span class="cart-count">0</span>
         <a href="cart/index.html">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -25,6 +28,7 @@
       </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main class="divider">
       <!-- HERO SECTION -->
       <div class="hero">
@@ -44,6 +48,44 @@
         </div>
       </div>
 
+      <!-- CATEGORIES SECTION -->
+      <section class="products">
+        <ul class="product-grid">
+          <li>
+            <a href="product_listing/index.html?category=tents">
+              <img src="/images/Tents.webp" alt="Tents" />
+              <h2>Tents</h2>
+            </a>
+          </li>
+      
+          <li>
+            <a href="product_listing/index.html?category=backpacks">
+              <img src="/images/Backpacks.webp" alt="Backpacks" />
+              <h2>Backpacks</h2>
+            </a>
+          </li>
+      
+          <li>
+            <a href="product_listing/index.html?category=sleeping-bags">
+              <img src="/images/sleeping_bags.webp" alt="Sleeping Bags" />
+              <h2>Sleeping Bags</h2>
+            </a>
+          </li>
+      
+          <li>
+            <a href="product_listing/index.html?category=hammocks">
+              <img src="/images/Hammocks.webp" alt="Hammocks" />
+              <h2>Hammocks</h2>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PRODUCTS SECTION -->
+      <section class="products">
+        <h2>Top Products</h2>
+        <ul class="product-list">
+          <!-- Product cards will be dynamically loaded here by JS -->
       
       <section class="categories">
         <a href="product_listing/index.html?category=tents">
@@ -76,6 +118,9 @@
       </section>
     </main>
 
+    <!-- FOOTER -->
+    <footer>
+      &copy;2026 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway Worldwide Online
     <footer>
       &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway Worldwide Online
     </footer>

@@ -304,6 +304,60 @@ footer {
 }
 
 
+/* Make the categories display in a grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+/* Style each category card */
+.category-card {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 120px;
+  /* increase size */
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.category-card h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+/* Hover effect */
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
+  font-weight: bold;
 .categories {
   text-align: center;
   margin: 2rem 0;
