@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/main.js" type="module"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/main.js" type="module"></script>
     <script>
       function setCategoryAndNavigate(category) {
         // Set URL parameter without page reload
@@ -17,7 +17,7 @@
         window.history.replaceState({}, '', url.toString());
         
         // Navigate to product listing page
-        window.location.href = `product_listing/index.html?category=${category}`;
+        window.location.href = `?category=${category}`;
       }
     </script>
   </head>
@@ -50,28 +50,28 @@
       <!-- PRODUCT CATEGORIES -->
       <section class="categories">
         <div class="category-card">
-          <a href="?category=tents" onclick="showCategoryProducts('tents')">
+          <a href="?category=tents" onclick="setCategoryAndNavigate('tents')">
             <img src="/images/Tents.webp" alt="Tents" />
             <h3>Tents</h3>
           </a>
         </div>
 
         <div class="category-card">
-          <a href="?category=backpacks" onclick="showCategoryProducts('backpacks')">
+          <a href="?category=backpacks" onclick="setCategoryAndNavigate('backpacks')">
             <img src="/images/Backpacks.webp" alt="Backpacks" />
             <h3>Backpacks</h3>
           </a>
         </div>
 
         <div class="category-card">
-          <a href="?category=sleeping-bags" onclick="showCategoryProducts('sleeping-bags')">
+          <a href="?category=sleeping-bags" onclick="setCategoryAndNavigate('sleeping-bags')">
             <img src="/images/sleeping_bags.webp" alt="Sleeping Bags" />
             <h3>Sleeping Bags</h3>
           </a>
         </div>
 
         <div class="category-card">
-          <a href="?category=hammocks" onclick="showCategoryProducts('hammocks')">
+          <a href="?category=hammocks" onclick="setCategoryAndNavigate('hammocks')">
             <img src="/images/Hammocks.webp" alt="Hammocks" />
             <h3>Hammocks</h3>
           </a>
