@@ -9,27 +9,21 @@
     <script src="/js/main.js" type="module"></script>
     <script>
       function setCategoryAndNavigate(category) {
-        // Set URL parameter without page reload
         const url = new URL(window.location);
         url.searchParams.set('category', category);
         
-        // Update the URL without reloading the page
         window.history.replaceState({}, '', url.toString());
         
-        // Navigate to product listing page
         window.location.href = `?category=${category}`;
       }
     </script>
   </head>
 
   <body>
-    <!-- HEADER -->
     <header class="divider" id="main-header">
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="divider">
-      <!-- HERO SECTION -->
       <div class="hero">
         <img src="/images/hero-sm.jpg" srcset="/images/hero-sm.jpg 500w, /images/hero.jpg"
           alt="image of a high mountain lake" />
@@ -47,7 +41,6 @@
         </div>
       </div>
 
-      <!-- PRODUCT CATEGORIES -->
       <section class="categories">
         <div class="category-card">
           <a href="?category=tents" onclick="setCategoryAndNavigate('tents')">
@@ -78,16 +71,13 @@
         </div>
       </section>
 
-      <!-- PRODUCTS SECTION -->
       <section class="products">
         <h2>Top Products</h2>
         <ul class="product-list">
-          <!-- products will load here -->
         </ul>
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer id="main-footer">
     </footer>
   </body>
