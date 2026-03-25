@@ -303,10 +303,10 @@ footer {
   padding: 1em;
 }
 
-/* Make categories display in a grid */
+/* Make categories display in a responsive grid */
 .categories {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   padding: 0;
   margin: 2rem 0;
