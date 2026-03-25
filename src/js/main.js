@@ -1,14 +1,61 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
-import { updateCartCount } from "./utils.mjs";
+import { updateCartCount, getParam, loadHeaderFooter } from "./utils.mjs";
 
-updateCartCount();
-import { loadHeaderFooter } from './utils.mjs';
-
-// Homepage only needs header/footer
 loadHeaderFooter();
 
-productList.init();
+// Get parameters from URL
+const category = getParam('category');
+const productId = getParam('product');
 
-// No product rendering here anymore.
-// Category links on index.html will point to product_listing/index.html?category=...
+// Create instances
+const dataSource = new ProductData();
+const listElement = document.querySelector('.product-list');
+
+// Show products section when category is selected
+if (category) {
+  const productsSection = document.querySelector('.products');
+  if (productsSection) productsSection.style.display = 'block';
+  
+  // Create product list with specific category
+  const productList = new ProductList(category, dataSource, listElement);
+  productList.init();
+} else {
+  // Hide products section when no category
+  const productsSection = document.querySelector('.products');
+  if (productsSection) productsSection.style.display = 'none';
+}
+
+// Function to show category products on homepage
+function showCategoryProducts(category) {
+  // Set URL parameter without page reload
+  const url = new URL(window.location);
+  url.searchParams.set('category', category);
+  
+  // Update URL without reloading page
+  window.history.replaceState({}, '', url.toString());
+}
+
+if (productId) {
+  // Show products section and hide other containers
+  const categoriesSection = document.querySelector('.categories');
+  const heroSection = document.querySelector('.hero');
+  const missionSection = document.querySelector('.mission');
+  
+  if (categoriesSection) categoriesSection.style.display = 'none';
+  if (heroSection) heroSection.style.display = 'none';
+  if (missionSection) missionSection.style.display = 'none';
+  
+  // Create product list with specific product
+  const productList = new ProductList(category, dataSource, listElement);
+  productList.init();
+} else {
+  // Show categories and hide products section
+  const categoriesSection = document.querySelector('.categories');
+  const heroSection = document.querySelector('.hero');
+  const missionSection = document.querySelector('.mission');
+  
+  if (categoriesSection) categoriesSection.style.display = 'grid';
+  if (heroSection) heroSection.style.display = 'block';
+  if (missionSection) missionSection.style.display = 'block';
+}

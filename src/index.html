@@ -7,25 +7,24 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/main.js" type="module"></script>
+    <script>
+      function setCategoryAndNavigate(category) {
+        // Set URL parameter without page reload
+        const url = new URL(window.location);
+        url.searchParams.set('category', category);
+        
+        // Update the URL without reloading the page
+        window.history.replaceState({}, '', url.toString());
+        
+        // Navigate to product listing page
+        window.location.href = `product_listing/index.html?category=${category}`;
+      }
+    </script>
   </head>
 
   <body>
     <!-- HEADER -->
-    <header class="divider">
-      <div class="logo">
-        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
-        <a href="/index.html"> Sleep<span class="highlight">Outside</span></a>
-      </div>
-      <div class="cart">
-        <a href="/cart/index.html">
-          <span class="cart-count">0</span>
-        <a href="cart/index.html">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-          
-          </svg>
-        </a>
-      </div>
+    <header class="divider" id="main-header">
     </header>
 
     <!-- MAIN CONTENT -->
@@ -48,65 +47,35 @@
         </div>
       </div>
 
-      <!-- CATEGORIES SECTION -->
-      <section class="products">
-        <ul class="product-grid">
-          <li>
-            <a href="product_listing/index.html?category=tents">
-              <img src="/images/Tents.webp" alt="Tents" />
-              <h2>Tents</h2>
-            </a>
-          </li>
-      
-          <li>
-            <a href="product_listing/index.html?category=backpacks">
-              <img src="/images/Backpacks.webp" alt="Backpacks" />
-              <h2>Backpacks</h2>
-            </a>
-          </li>
-      
-          <li>
-            <a href="product_listing/index.html?category=sleeping-bags">
-              <img src="/images/sleeping_bags.webp" alt="Sleeping Bags" />
-              <h2>Sleeping Bags</h2>
-            </a>
-          </li>
-      
-          <li>
-            <a href="product_listing/index.html?category=hammocks">
-              <img src="/images/Hammocks.webp" alt="Hammocks" />
-              <h2>Hammocks</h2>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <!-- PRODUCTS SECTION -->
-      <section class="products">
-        <h2>Top Products</h2>
-        <ul class="product-list">
-          <!-- Product cards will be dynamically loaded here by JS -->
-      
+      <!-- PRODUCT CATEGORIES -->
       <section class="categories">
-        <a href="product_listing/index.html?category=tents">
-          <img src="./images/tent.webp" alt="Tents" />
-          <h3>Tents</h3>
-        </a>
+        <div class="category-card">
+          <a href="?category=tents" onclick="showCategoryProducts('tents')">
+            <img src="/images/Tents.webp" alt="Tents" />
+            <h3>Tents</h3>
+          </a>
+        </div>
 
-        <a href="product_listing/index.html?category=backpacks">
-          <img src="./images/backpack.webp" alt="Backpacks" />
-          <h3>Backpacks</h3>
-        </a>
+        <div class="category-card">
+          <a href="?category=backpacks" onclick="showCategoryProducts('backpacks')">
+            <img src="/images/Backpacks.webp" alt="Backpacks" />
+            <h3>Backpacks</h3>
+          </a>
+        </div>
 
-        <a href="product_listing/index.html?category=sleeping-bags">
-          <img src="./images/sleepingbag.webp" alt="Sleeping Bags" />
-          <h3>Sleeping Bags</h3>
-        </a>
+        <div class="category-card">
+          <a href="?category=sleeping-bags" onclick="showCategoryProducts('sleeping-bags')">
+            <img src="/images/sleeping_bags.webp" alt="Sleeping Bags" />
+            <h3>Sleeping Bags</h3>
+          </a>
+        </div>
 
-        <a href="product_listing/index.html?category=hammocks">
-          <img src="./images/hammock.webp" alt="Hammocks" />
-          <h3>Hammocks</h3>
-        </a>
+        <div class="category-card">
+          <a href="?category=hammocks" onclick="showCategoryProducts('hammocks')">
+            <img src="/images/Hammocks.webp" alt="Hammocks" />
+            <h3>Hammocks</h3>
+          </a>
+        </div>
       </section>
 
       <!-- PRODUCTS SECTION -->
@@ -119,10 +88,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
-      &copy;2026 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway Worldwide Online
-    <footer>
-      &copy;2025 ⛺ SleepOutside ⛺ WDD 330 ⛺ BYU-Idaho for BYU-Pathway Worldwide Online
+    <footer id="main-footer">
     </footer>
   </body>
 
