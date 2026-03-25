@@ -18,7 +18,6 @@ export default class ProductDetails {
       this.renderProductDetails();
       this.setupAddToCart();
     } catch (err) {
-      console.error("Failed to load product:", err);
       document.querySelector(".product-detail").innerHTML =
         "<p>Sorry, product not found.</p>";
     }
@@ -28,31 +27,27 @@ export default class ProductDetails {
     const product = this.product;
 
     // Main image
-    const productImage = document.getElementById("productImage");
-    productImage.src =
-      product.PrimaryLarge ||
-      (product.Images && product.Images[0]?.Large) ||
-      "";
+    const productImage = document.getElementById("p-image");
+    productImage.src = product.Images?.PrimaryLarge || "";
     productImage.alt = product.NameWithoutBrand;
 
     // Product info
-    document.getElementById("productBrand").textContent = product.Brand.Name;
-    document.getElementById("productName").textContent = product.NameWithoutBrand;
-    document.getElementById("productPrice").textContent = `$${product.FinalPrice}`;
-    document.getElementById("productColor").textContent = product.Colors[0].ColorName;
-    document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
+    document.getElementById("p-brand").textContent = product.Brand.Name;
+    document.getElementById("p-name").textContent = product.NameWithoutBrand;
+    document.getElementById("p-price").textContent = `$${product.FinalPrice}`;
+    document.getElementById("p-color").textContent = product.Colors[0].ColorName;
+    document.getElementById("p-description").innerHTML = product.DescriptionHtmlSimple;
 
-    
-    const thumbContainer = document.getElementById("productThumbs");
+    const thumbContainer = document.getElementById("p-thumbs");
     thumbContainer.innerHTML = "";
-    if (product.Images && product.Images.length > 0) {
-      product.Images.forEach((img) => {
+    if (product.Images?.ExtraImages?.length > 0) {
+      product.Images.ExtraImages.forEach((img) => {
         const thumb = document.createElement("img");
-        thumb.src = img.Medium;
-        thumb.alt = product.NameWithoutBrand;
+        thumb.src = img.Src;
+        thumb.alt = img.Title || product.NameWithoutBrand;
         thumb.classList.add("thumb");
         thumb.addEventListener("click", () => {
-          productImage.src = img.Large || img.Medium;
+          productImage.src = img.Src;
         });
         thumbContainer.appendChild(thumb);
       });
@@ -74,9 +69,8 @@ export default class ProductDetails {
     const productWithImage = {
       ...this.product,
       Image:
-        (this.product.Images && this.product.Images[0]?.Medium) ||
-        this.product.PrimaryMedium ||
-        this.product.PrimaryLarge ||
+        this.product.Images?.PrimaryMedium ||
+        this.product.Images?.PrimaryLarge ||
         "",
     };
 

@@ -1,4 +1,6 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 const CART_KEY = "so-cart";
 const productListEl = document.querySelector(".product-list");
@@ -76,12 +78,6 @@ function cartItemTemplate(item) {
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>
     </a>
-    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-      <img src="${item.Image || "default.jpg"}" alt="${item.Name || "Product"}" />
-    </a>
-    <a href="#">
-      <h2 class="card__name">${item.Name || "Unnamed Product"}</h2>
-    </a>
     <p class="cart-card__color">${item.Colors?.[0]?.ColorName || "No color"}</p>
     <p class="cart-card__quantity">qty: ${quantity}</p>
     <p class="cart-card__price">$${itemTotal.toFixed(2)}</p>
@@ -92,13 +88,10 @@ function renderCartContents() {
   const cartItems = normalizeCartItems(getCartItems());
   saveCartItems(cartItems);
 
-  //  Prevent DOM error
   if (!productListEl) {
-    console.error("No .product-list element found.");
     return;
   }
 
-  // For Handle empty cart
   if (cartItems.length === 0) {
     productListEl.innerHTML = "<p>Your cart is empty.</p>";
     updateCartFooter(cartItems);

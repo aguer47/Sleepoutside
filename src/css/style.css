@@ -303,24 +303,23 @@ footer {
   padding: 1em;
 }
 
-
-/* Make the categories display in a grid */
-.product-grid {
+/* Make categories display in a grid */
+.categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  list-style: none;
   padding: 0;
   margin: 2rem 0;
 }
 
-/* Style each category card */
 .category-card {
   text-align: center;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   background-color: #fff;
   cursor: pointer;
 }
@@ -358,29 +357,4 @@ footer {
   padding: 3px 6px;
   border-radius: 50%;
   font-weight: bold;
-.categories {
-  text-align: center;
-  margin: 2rem 0;
-  gap: 2rem;
-  display: grid;
-  text-align: center;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.categories a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: black;
-}
-
-.categories img {
-  width: 140px;
-  /* controls image size */
-  height: auto;
-}
-
-.categories h3 {
-  margin-top: 0.5rem;
-  font-size: 1rem;
 }
