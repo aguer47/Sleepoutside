@@ -18,20 +18,17 @@ export default class ProductDetails {
       this.renderProductDetails();
       this.setupAddToCart();
     } catch (err) {
-      document.querySelector(".product-detail").innerHTML =
-        "<p>Sorry, product not found.</p>";
+      document.querySelector(".product-detail").innerHTML = "<p>Sorry, product not found.</p>";
     }
   }
 
   renderProductDetails() {
     const product = this.product;
 
-    // Main image
     const productImage = document.getElementById("p-image");
     productImage.src = product.Images?.PrimaryLarge || "";
     productImage.alt = product.NameWithoutBrand;
 
-    // Product info
     document.getElementById("p-brand").textContent = product.Brand.Name;
     document.getElementById("p-name").textContent = product.NameWithoutBrand;
     document.getElementById("p-price").textContent = `$${product.FinalPrice}`;
@@ -65,7 +62,6 @@ export default class ProductDetails {
     const cartItems = getLocalStorage(CART_KEY) || [];
     const existingItem = cartItems.find((item) => item.Id === this.product.Id);
 
-    //  Always ensure we save a usable image
     const productWithImage = {
       ...this.product,
       Image:

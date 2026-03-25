@@ -51,7 +51,6 @@ export default class ProductList {
   addToCart(product) {
     let cart = JSON.parse(localStorage.getItem("so-cart")) || [];
 
-    // Ensure we save an Image field
     const productWithImage = {
       ...product,
       Image:

@@ -19,7 +19,6 @@ function normalizeCartItems(items) {
       return normalizedItems;
     }
 
-    // Use PrimaryMedium as the image for cart
     const image = item.PrimaryMedium || item.PrimaryLarge || item.Image;
 
     const existingItem = normalizedItems.find(
@@ -45,7 +44,6 @@ function calculateCartTotal(items) {
     0
   );
 }
-
 
 function updateCartFooter(items) {
   const footer = document.querySelector(".cart-footer");
@@ -98,7 +96,6 @@ function renderCartContents() {
     return;
   }
 
-  
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   productListEl.innerHTML = htmlItems.join("");
 
@@ -121,7 +118,6 @@ function removeCartItem(id) {
   renderCartContents();
 }
 
-//  Event listener for remove buttons
 if (productListEl) {
   productListEl.addEventListener("click", (event) => {
     const removeButton = event.target.closest(".cart-remove");
@@ -133,6 +129,5 @@ if (productListEl) {
     removeCartItem(id);
   });
 }
-
 
 renderCartContents();
