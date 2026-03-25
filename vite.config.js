@@ -17,3 +17,10 @@ export default defineConfig({
     },
   },
 });
+        product_listing: resolve(__dirname, "src/product_listing/index.html"),
+      },
+    },
+  },
+});
+
+

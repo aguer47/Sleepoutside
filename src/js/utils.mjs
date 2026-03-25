@@ -61,4 +61,6 @@ export function updateCartCount() {
   if (cartElement) {
     cartElement.textContent = cart.length;
   }
+export async function loadHeaderFooter() {
+  // simple placeholder (so your app doesn't break)
 }

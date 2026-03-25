@@ -2,6 +2,8 @@
 
 import { renderListWithTemplate, updateCartCount } from "./utils.mjs";
 
+import { renderListWithTemplate } from "./utils.mjs";
+
 function productCardTemplate(product) {
   return `
     <li class="product-card">
@@ -9,6 +11,10 @@ function productCardTemplate(product) {
         <img src="${product.Images.PrimaryMedium}" alt="${product.Name}">
         <h3>${product.Brand.Name}</h3>
         <p>${product.NameWithoutBrand}</p>
+      <a href="product_pages/?product=${product.Id}">
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" />
+        <h2>${product.Brand.Name}</h2>
+        <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
       <button class="add-to-cart" data-id="${product.Id}">Add to Cart</button>
