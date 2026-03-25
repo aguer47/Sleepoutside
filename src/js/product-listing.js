@@ -5,7 +5,7 @@ import { getParam, loadHeaderFooter } from "./utils.mjs";
 import { updateCartCount } from "./utils.mjs";
 
 
-const category = getParam("category"); // grabs ?category=tents
+const category = getParam("category"); 
 const dataSource = new ProductData();
 const listElement = document.querySelector(".product-list");
 

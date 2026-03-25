@@ -11,7 +11,7 @@ export default class ProductData {
     const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await convertToJson(response);
 
-    // ensure we always return an array
+    // ensure always return an array
     return Array.isArray(data.Result) ? data.Result : [data.Result];
   }
 

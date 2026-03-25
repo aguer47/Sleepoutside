@@ -42,7 +42,7 @@ export default class ProductDetails {
     document.getElementById("productColor").textContent = product.Colors[0].ColorName;
     document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 
-    // Additional images
+    
     const thumbContainer = document.getElementById("productThumbs");
     thumbContainer.innerHTML = "";
     if (product.Images && product.Images.length > 0) {
@@ -70,7 +70,7 @@ export default class ProductDetails {
     const cartItems = getLocalStorage(CART_KEY) || [];
     const existingItem = cartItems.find((item) => item.Id === this.product.Id);
 
-    // ✅ Always ensure we save a usable image
+    //  Always ensure we save a usable image
     const productWithImage = {
       ...this.product,
       Image:
