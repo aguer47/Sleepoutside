@@ -26,6 +26,17 @@ body {
   color: var(--dark-grey);
 }
 
+.alert-list {
+  margin-bottom: 1rem;
+}
+
+.alert-list p {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
 img {
   max-width: 100%;
 }
