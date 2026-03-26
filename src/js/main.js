@@ -1,6 +1,7 @@
 import ProductData from "./ProductData.mjs";
 import ProductList from "./ProductList.mjs";
 import { updateCartCount, getParam, loadHeaderFooter } from "./utils.mjs";
+import Alert from "./alert.js";
 
 loadHeaderFooter();
 
@@ -59,3 +60,7 @@ if (productId) {
   if (heroSection) heroSection.style.display = 'block';
   if (missionSection) missionSection.style.display = 'block';
 }
+
+// Initialize and render alerts
+const alert = new Alert();
+alert.render();
